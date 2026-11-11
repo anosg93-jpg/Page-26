@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة التواصل والدفع الإلكتروني</title>
+    <!-- FontAwesome للايقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f4f5f7;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-bottom: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+            background: #ffffff;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header Layout based on video */
+        .header-card {
+            background: #111111;
+            color: #fff;
+            padding: 30px 20px 25px;
+            text-align: center;
+            border-bottom-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .avatar-box {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            background: #222;
+            border: 3px solid #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #ffffff;
+        }
+
+        .brand-subtitle {
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        /* Action Buttons */
+        .main-action-btn {
+            background: linear-gradient(135deg, #e52d27, #b31217);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(229, 45, 39, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .main-action-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* Grid Icons Section */
+        .links-section {
+            padding: 25px 20px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 18px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .grid-item {
+            background: #f8f9fa;
+            border: 1px solid #edf0f3;
+            border-radius: 20px;
+            padding: 16px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .grid-item:active {
+            transform: scale(0.95);
+            background: #f0f2f5;
+        }
+
+        .icon-wrapper {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .grid-item span {
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Brand Icon Colors */
+        .bg-whatsapp { background: #25D366; }
+        .bg-facebook { background: #1877F2; }
+        .bg-instapay { background: linear-gradient(135deg, #6b21a8, #4c1d95); }
+        .bg-vodafone { background: #e60000; }
+        .bg-google { background: #4285F4; }
+        .bg-maps { background: #ea4335; }
+        .bg-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .bg-tiktok { background: #000000; }
+        .bg-phone { background: #34b7f1; }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #222;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 13px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3px ease;
+            z-index: 1000;
+            opacity: 0;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header Card -->
+    <div class="header-card">
+        <div class="avatar-box">
+            <i class="fa-solid fa-store" style="font-size: 32px; color: #d4af37;"></i>
+        </div>
+        <h1 class="brand-name">مركز الخدمات السريع</h1>
+        <p class="brand-subtitle">تواصل معنا والدفع الإلكتروني المباشر</p>
+        
+        <a href="tel:01003800314" class="main-action-btn">
+            <i class="fa-solid fa-phone"></i>
+            <span>دفعة جديدة / اتصال</span>
+        </a>
+    </div>
+
+    <!-- Grid Services -->
+    <div class="links-section">
+        <div class="section-title">اختر الخدمة أو المنصة المطلوب الوصول إليها</div>
+        
+        <div class="grid-container">
+            <!-- WhatsApp -->
+            <a href="https://wa.me/201003800314" target="_blank" class="grid-item">
+                <div class="icon-wrapper bg-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <span>واتساب</span>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/share/14xjYnMwQPK/" target="_blank" class="grid-item">
+                <div class="icon-wrapper bg-facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </div>
+                <span>فيسبوك</span>
+            </a>
+
+            <!-- InstaPay -->
+            <div class="grid-item" onclick="copyToClipboard('01016565602', 'رقم انستا باي')">
+                <div class="icon-wrapper bg-instapay">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <span>انستا باي</span>
+            </div>
+
+            <!-- Vodafone Cash -->
+            <div class="grid-item" onclick="copyToClipboard('01003800314', 'رقم فودافون كاش')">
+                <div class="icon-wrapper bg-vodafone">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <span>فودافون كاش</span>
+            </div>
+
+            <!-- Google Reviews -->
+            <a href="#" class="grid-item">
+                <div class="icon-wrapper bg-google">
+                    <i class="fa-brands fa-google"></i>
+                </div>
+                <span>التقييمات</span>
+            </a>
+
+            <!-- Google Maps -->
+            <a href="#" class="grid-item">
+                <div class="icon-wrapper bg-maps">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <span>الخرائط</span>
+            </a>
+
+            <!-- Instagram -->
+            <a href="#" class="grid-item">
+                <div class="icon-wrapper bg-instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <span>انستجرام</span>
+            </a>
+
+            <!-- TikTok -->
+            <a href="#" class="grid-item">
+                <div class="icon-wrapper bg-tiktok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </div>
+                <span>تيك توك</span>
+            </a>
+
+            <!-- Phone Call -->
+            <a href="tel:01003800314" class="grid-item">
+                <div class="icon-wrapper bg-phone">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <span>الدعم الفني</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Copy Toast Notification -->
+<div id="toast" class="toast">تم نسخ الرقم بنجاح!</div>
+
+<script>
+    function copyToClipboard(text, type) {
+        navigator.clipboard.writeText(text).then(function() {
+            showToast("تم نسخ " + type + ": " + text);
+        }, function(err) {
+            // Fallback for mobile browsers
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+            showToast("تم نسخ " + type + ": " + text);
+        });
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById("toast");
+        toast.innerText = message;
+        toast.classList.add("show");
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 2500);
+    }
+</script>
+
+</body>
+</html>
