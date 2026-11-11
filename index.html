@@ -35,7 +35,7 @@
             overflow: hidden;
         }
 
-        /* Header Layout based on video */
+        /* Header Layout */
         .header-card {
             background: #111111;
             color: #fff;
@@ -169,28 +169,6 @@
         .bg-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .bg-tiktok { background: #000000; }
         .bg-phone { background: #34b7f1; }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #222;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 13px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3px ease;
-            z-index: 1000;
-            opacity: 0;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
     </style>
 </head>
 <body>
@@ -231,21 +209,21 @@
                 <span>فيسبوك</span>
             </a>
 
-            <!-- InstaPay -->
-            <div class="grid-item" onclick="copyToClipboard('01016565602', 'رقم انستا باي')">
+            <!-- InstaPay (مباشر لتطبيق انستا باي أو التحويل) -->
+            <a href="https://ipn.eg/S/instapay/01016565602" target="_blank" class="grid-item">
                 <div class="icon-wrapper bg-instapay">
                     <i class="fa-solid fa-bolt"></i>
                 </div>
                 <span>انستا باي</span>
-            </div>
+            </a>
 
-            <!-- Vodafone Cash -->
-            <div class="grid-item" onclick="copyToClipboard('01003800314', 'رقم فودافون كاش')">
+            <!-- Vodafone Cash (فتح الاتصال بكود التحويل السريع فودافون كاش *9*رقم_المحفظة#) -->
+            <a href="tel:*9*01003800314%23" class="grid-item">
                 <div class="icon-wrapper bg-vodafone">
                     <i class="fa-solid fa-wallet"></i>
                 </div>
                 <span>فودافون كاش</span>
-            </div>
+            </a>
 
             <!-- Google Reviews -->
             <a href="#" class="grid-item">
@@ -289,35 +267,6 @@
         </div>
     </div>
 </div>
-
-<!-- Copy Toast Notification -->
-<div id="toast" class="toast">تم نسخ الرقم بنجاح!</div>
-
-<script>
-    function copyToClipboard(text, type) {
-        navigator.clipboard.writeText(text).then(function() {
-            showToast("تم نسخ " + type + ": " + text);
-        }, function(err) {
-            // Fallback for mobile browsers
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand("copy");
-            document.body.removeChild(textArea);
-            showToast("تم نسخ " + type + ": " + text);
-        });
-    }
-
-    function showToast(message) {
-        const toast = document.getElementById("toast");
-        toast.innerText = message;
-        toast.classList.add("show");
-        setTimeout(() => {
-            toast.classList.remove("show");
-        }, 2500);
-    }
-</script>
 
 </body>
 </html>
