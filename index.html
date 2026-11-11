@@ -60,12 +60,6 @@
             overflow: hidden;
         }
 
-        .avatar-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         .brand-name {
             font-size: 20px;
             font-weight: 700;
@@ -209,15 +203,15 @@
                 <span>فيسبوك</span>
             </a>
 
-            <!-- InstaPay (مباشر لتطبيق انستا باي أو التحويل) -->
-            <a href="https://ipn.eg/S/instapay/01016565602" target="_blank" class="grid-item">
+            <!-- InstaPay Direct App Intent -->
+            <a href="intent://ipn.eg/S/instapay/01016565602#Intent;scheme=https;package=com.eg.banquemisr.ipn;end;" class="grid-item">
                 <div class="icon-wrapper bg-instapay">
                     <i class="fa-solid fa-bolt"></i>
                 </div>
                 <span>انستا باي</span>
             </a>
 
-            <!-- Vodafone Cash (فتح الاتصال بكود التحويل السريع فودافون كاش *9*رقم_المحفظة#) -->
+            <!-- Vodafone Cash -->
             <a href="tel:*9*01003800314%23" class="grid-item">
                 <div class="icon-wrapper bg-vodafone">
                     <i class="fa-solid fa-wallet"></i>
