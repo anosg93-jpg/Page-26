@@ -258,7 +258,7 @@
             </a>
 
             <!-- Google Maps -->
-            <a href="#" class="grid-item">
+            <a href="https://maps.app.goo.gl/5qrdy4rt4FkQDxt66?g_st=ac" target="_blank" class="grid-item">
                 <div class="icon-wrapper bg-maps">
                     <i class="fa-solid fa-location-dot"></i>
                 </div>
@@ -266,7 +266,7 @@
             </a>
 
             <!-- Instagram -->
-            <a href="#" class="grid-item">
+            <a href="https://www.instagram.com/kababgy_wadi_elnile_el_zamel?cplk=ZWJmdjk5a203Z28z" target="_blank" class="grid-item">
                 <div class="icon-wrapper bg-instagram">
                     <i class="fa-brands fa-instagram"></i>
                 </div>
@@ -274,7 +274,7 @@
             </a>
 
             <!-- TikTok -->
-            <a href="#" class="grid-item">
+            <a href="https://www.tiktok.com/@user7900309466523?_r=1&_t=ZS-9BSO69dN6KD" target="_blank" class="grid-item">
                 <div class="icon-wrapper bg-tiktok">
                     <i class="fa-brands fa-tiktok"></i>
                 </div>
@@ -309,22 +309,24 @@
     }
 
     function launchInstaPay() {
-        // فتح رابط انستا باي في نفس النافذة يجبر الموبايل على تشغيل التطبيق مباشرة
+        // فتح رابط انستا باي مباشرة ليجبر الموبايل على فتح التطبيق
         window.location.href = "https://ipn.eg/S/uhdfe1753/instapay/3nOECV";
     }
 
     function launchVodafoneCash() {
         const vfNumber = "01090216691";
         copyText(vfNumber);
-        showToast("تم نسخ الرقم: " + vfNumber + " - جاري فتح أنا فودافون...");
+        showToast("تم نسخ الرقم: " + vfNumber + " - جاري فتح تطبيق فودافون كاش...");
         
-        // محاولة فتح تطبيق أنا فودافون مباشرة على قسم المحفظة
-        window.location.href = "anavodafone://vfcash";
-        
-        // في حال لم يفتح التطبيق خلال ثانية ونصف، يتم التوجيه لرابط فودافون كاش الرسمي
+        // استخدام Intent للتوجيه المباشر لتطبيق أنا فودافون وتخطي كروم نهائياً
         setTimeout(function() {
-            window.location.href = "https://web.vodafone.com.eg/spa/vfcash";
-        }, 1500);
+            window.location.href = "intent://vfcash/#Intent;scheme=anavodafone;package=com.vfe.selfcare;end;";
+        }, 500);
+
+        // مسار احتياطي في حال لم يكن التطبيق مثبتاً يتم تحويله لموقع فودافون كاش مباشرة
+        setTimeout(function() {
+            window.location.href = "http://vf.eg/vfcash?id=mt&qrId=7eBO1d";
+        }, 1800);
     }
 </script>
 
