@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة التواصل والدفع الإلكتروني</title>
-    <!-- FontAwesome للايقونات -->
+    <title>مطاعم وادي النيل الزامل - الدفع والتواصل</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -37,7 +36,7 @@
 
         /* Header Layout */
         .header-card {
-            background: #111111;
+            background: #121212;
             color: #fff;
             padding: 30px 20px 25px;
             text-align: center;
@@ -48,29 +47,36 @@
         }
 
         .avatar-box {
-            width: 90px;
-            height: 90px;
+            width: 85px;
+            height: 85px;
             margin: 0 auto 12px;
             border-radius: 50%;
-            background: #222;
+            background: #1f1f1f;
             border: 3px solid #d4af37;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
         }
 
         .brand-name {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 4px;
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 6px;
             color: #ffffff;
         }
 
         .brand-subtitle {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: #f3d56b;
+            padding: 5px 14px;
+            border-radius: 20px;
             font-size: 13px;
-            color: #aaa;
-            margin-bottom: 15px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
         /* Action Buttons */
@@ -163,33 +169,56 @@
         .bg-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .bg-tiktok { background: #000000; }
         .bg-phone { background: #34b7f1; }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #111;
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 25px;
+            font-size: 13px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <!-- Header Card -->
-    .
     <div class="header-card">
         <div class="avatar-box">
-            <i class="fa-solid fa-store" style="font-size: 32px; color: #d4af37;"></i>
+            <i class="fa-solid fa-utensils" style="font-size: 30px; color: #d4af37;"></i>
         </div>
-        <h1 class="brand-name">مركز الخدمات السريع</h1>
-        <p class="brand-subtitle">تواصل معنا والدفع الإلكتروني المباشر</p>
-        
-        <a href="tel:01003800314" class="main-action-btn">
-            <i class="fa-solid fa-phone"></i>
-            <span>دفعة جديدة / اتصال</span>
-        </a>
+        <h1 class="brand-name">مطاعم وادي النيل الزامل</h1>
+        <div class="brand-subtitle">كبدة ومخ و كبابجي و أسماك</div>
+        <div>
+            <a href="tel:01090216691" class="main-action-btn">
+                <i class="fa-solid fa-phone"></i>
+                <span>اتصل للطلب والدعم</span>
+            </a>
+        </div>
     </div>
 
     <!-- Grid Services -->
     <div class="links-section">
-        <div class="section-title">اختر الخدمة أو المنصة المطلوب الوصول إليها</div>
+        <div class="section-title">اختر الخدمة أو طريقة الدفع المطلوبة</div>
         
         <div class="grid-container">
             <!-- WhatsApp -->
-            <a href="https://wa.me/201003800314" target="_blank" class="grid-item">
+            <a href="https://wa.me/201090216691" target="_blank" class="grid-item">
                 <div class="icon-wrapper bg-whatsapp">
                     <i class="fa-brands fa-whatsapp"></i>
                 </div>
@@ -197,28 +226,28 @@
             </a>
 
             <!-- Facebook -->
-            <a href="https://www.facebook.com/share/14xjYnMwQPK/" target="_blank" class="grid-item">
+            <a href="https://www.facebook.com/share/18oYfvibpJ/?mibextid=wwXIfr" target="_blank" class="grid-item">
                 <div class="icon-wrapper bg-facebook">
                     <i class="fa-brands fa-facebook-f"></i>
                 </div>
                 <span>فيسبوك</span>
             </a>
 
-            <!-- InstaPay Direct Link -->
-            <a href="https://ipn.eg/S/sanaaabdelazizaser/instapay/2NHGgu" target="_blank" class="grid-item">
+            <!-- InstaPay Direct App Launch -->
+            <div onclick="launchInstaPay()" class="grid-item">
                 <div class="icon-wrapper bg-instapay">
                     <i class="fa-solid fa-bolt"></i>
                 </div>
                 <span>انستا باي</span>
-            </a>
+            </div>
 
-            <!-- Vodafone Cash Direct Link -->
-            <a href="http://vf.eg/vfcash?id=mt&qrId=7eBO1d" target="_blank" class="grid-item">
+            <!-- Vodafone Cash Direct App Launch -->
+            <div onclick="launchVodafoneCash()" class="grid-item">
                 <div class="icon-wrapper bg-vodafone">
                     <i class="fa-solid fa-wallet"></i>
                 </div>
                 <span>فودافون كاش</span>
-            </a>
+            </div>
 
             <!-- Google Reviews -->
             <a href="#" class="grid-item">
@@ -253,15 +282,51 @@
             </a>
 
             <!-- Phone Call -->
-            <a href="tel:01003800314" class="grid-item">
+            <a href="tel:01090216691" class="grid-item">
                 <div class="icon-wrapper bg-phone">
                     <i class="fa-solid fa-headset"></i>
                 </div>
-                <span>الدعم الفني</span>
+                <span>اتصل بنا</span>
             </a>
         </div>
     </div>
 </div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+    function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.innerText = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 3500);
+    }
+
+    function copyText(text) {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).catch(() => {});
+        }
+    }
+
+    function launchInstaPay() {
+        // فتح رابط انستا باي في نفس النافذة يجبر الموبايل على تشغيل التطبيق مباشرة
+        window.location.href = "https://ipn.eg/S/uhdfe1753/instapay/3nOECV";
+    }
+
+    function launchVodafoneCash() {
+        const vfNumber = "01090216691";
+        copyText(vfNumber);
+        showToast("تم نسخ الرقم: " + vfNumber + " - جاري فتح أنا فودافون...");
+        
+        // محاولة فتح تطبيق أنا فودافون مباشرة على قسم المحفظة
+        window.location.href = "anavodafone://vfcash";
+        
+        // في حال لم يفتح التطبيق خلال ثانية ونصف، يتم التوجيه لرابط فودافون كاش الرسمي
+        setTimeout(function() {
+            window.location.href = "https://web.vodafone.com.eg/spa/vfcash";
+        }, 1500);
+    }
+</script>
 
 </body>
 </html>
