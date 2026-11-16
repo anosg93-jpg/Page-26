@@ -218,13 +218,13 @@
                 <span>انستا باي</span>
             </div>
 
-            <!-- Vodafone Cash Direct App Link using the phone number -->
-            <div onclick="launchVodafoneCash()" class="grid-item">
+            <!-- Vodafone Cash Direct Link -->
+            <a href="https://vf.eg/vfcash?id=mt&qrId=Y5QW6O" target="_blank" class="grid-item">
                 <div class="icon-wrapper bg-vodafone">
                     <i class="fa-solid fa-wallet"></i>
                 </div>
                 <span>فودافون كاش</span>
-            </div>
+            </a>
 
             <!-- Google Reviews -->
             <a href="#" class="grid-item">
@@ -272,12 +272,6 @@
 <script>
     function launchInstaPay() {
         window.location.href = "https://ipn.eg/S/uhdfe1753/instapay/3nOECV";
-    }
-
-    function launchVodafoneCash() {
-        const vfNumber = "01090216691";
-        // الرابط المباشر الرسمي لفودافون كاش الذي يفتح تطبيق أنا فودافون على شاشة تحويل الأموال بالرقم مباشرة بدون متجر بلاي
-        window.location.href = "http://vf.eg/vfcash?id=mt&msisdn=" + vfNumber;
     }
 </script>
 
