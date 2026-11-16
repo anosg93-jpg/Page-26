@@ -218,7 +218,7 @@
                 <span>انستا باي</span>
             </div>
 
-            <!-- Vodafone Cash Direct App Launch using phone number -->
+            <!-- Vodafone Cash Direct App Link using the phone number -->
             <div onclick="launchVodafoneCash()" class="grid-item">
                 <div class="icon-wrapper bg-vodafone">
                     <i class="fa-solid fa-wallet"></i>
@@ -276,13 +276,8 @@
 
     function launchVodafoneCash() {
         const vfNumber = "01090216691";
-        // توجيه فوري لتطبيق أنا فودافون باستخدام بروتوكول الاتصال المباشر بالمحفظة والرقم المرفق
-        window.location.href = "intent://vfcash/transfer?phone=" + vfNumber + "#Intent;scheme=anavodafone;package=com.vfe.selfcare;end;";
-        
-        // مسار احتياطي ذكي يضمن فتح نافذة التحويل المباشر في حال لم يتوفر الـ Intent المباشر
-        setTimeout(function() {
-            window.location.href = "http://vf.eg/vfcash?id=mt&msisdn=" + vfNumber;
-        }, 1000);
+        // الرابط المباشر الرسمي لفودافون كاش الذي يفتح تطبيق أنا فودافون على شاشة تحويل الأموال بالرقم مباشرة بدون متجر بلاي
+        window.location.href = "http://vf.eg/vfcash?id=mt&msisdn=" + vfNumber;
     }
 </script>
 
