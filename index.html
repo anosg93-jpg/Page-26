@@ -170,60 +170,6 @@
         .bg-tiktok { background: #000000; }
         .bg-phone { background: #34b7f1; }
         .bg-menu { background: linear-gradient(135deg, #f5af19, #f12711); }
-
-        /* Menu Modal Popup */
-        #menuModal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.92);
-            z-index: 2000;
-            justify-content: center;
-            align-items: flex-start;
-            overflow-y: auto;
-            padding: 20px 10px;
-        }
-
-        .modal-content {
-            width: 100%;
-            max-width: 430px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            position: relative;
-            margin-top: 50px;
-        }
-
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            display: block;
-        }
-
-        .close-btn {
-            position: fixed;
-            top: 15px;
-            left: 20px;
-            background: #e52d27;
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            z-index: 2010;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
     </style>
 </head>
 <body>
@@ -258,12 +204,12 @@
             </a>
 
             <!-- المينو -->
-            <div onclick="openMenu()" class="grid-item">
+            <a href="menu.html" class="grid-item">
                 <div class="icon-wrapper bg-menu">
                     <i class="fa-solid fa-book-open"></i>
                 </div>
                 <span>المنيو</span>
-            </div>
+            </a>
 
             <!-- الاسماك -->
             <a href="https://www.facebook.com/share/1FXq5kHWmE/?mibextid=wwXIfr" target="_blank" class="grid-item">
@@ -348,32 +294,9 @@
     </div>
 </div>
 
-<!-- Menu Modal Popup -->
-<div id="menuModal">
-    <button class="close-btn" onclick="closeMenu()"><i class="fa-solid fa-xmark"></i></button>
-    <div class="modal-content">
-        <img src="./images/sora1.jpg" alt="المنيو - 1">
-        <img src="./images/sora2.jpg" alt="المنيو - 2">
-        <img src="./images/sora3.jpg" alt="المنيو - 3">
-        <img src="./images/sora4.jpg" alt="المنيو - 4">
-        <img src="./images/sora5.jpg" alt="المنيو - 5">
-        <img src="./images/sora6.jpg" alt="المنيو - 6">
-    </div>
-</div>
-
 <script>
     function launchInstaPay() {
         window.location.href = "https://ipn.eg/S/uhdfe1753/instapay/3nOECV";
-    }
-
-    function openMenu() {
-        document.getElementById("menuModal").style.display = "flex";
-        document.body.style.overflow = "hidden";
-    }
-
-    function closeMenu() {
-        document.getElementById("menuModal").style.display = "none";
-        document.body.style.overflow = "auto";
     }
 </script>
 
